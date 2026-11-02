@@ -1,0 +1,116 @@
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tozluraflar | Antikanın Zamansız Dünyası</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: #211811;
+      color: #f4ead8;
+      font-family: Georgia, serif;
+    }
+    header {
+      padding: 24px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #80643c;
+      flex-wrap: wrap;
+      gap: 18px;
+    }
+    .logo { color: #d6b477; font-size: 29px; letter-spacing: 3px; }
+    nav a {
+      color: #f4ead8;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 15px;
+    }
+    .hero {
+      min-height: 510px;
+      padding: 100px 8%;
+      text-align: center;
+      background: linear-gradient(135deg,#211811,#49321f,#211811);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .hero small { color: #d6b477; letter-spacing: 5px; }
+    h1 { font-size: clamp(38px,7vw,68px); margin: 25px 0; }
+    .hero p { color: #dfd0b8; font-size: 19px; }
+    .btn {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 14px 30px;
+      color: #211811;
+      background: #d6b477;
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+    section { padding: 65px 8%; text-align: center; }
+    h2 { color: #d6b477; font-size: 32px; }
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit,minmax(220px,1fr));
+      gap: 20px;
+      margin-top: 35px;
+    }
+    .card {
+      border: 1px solid #80643c;
+      padding: 35px 20px;
+      background: #302319;
+    }
+    .card h3 { color: #d6b477; }
+    footer {
+      padding: 30px;
+      text-align: center;
+      border-top: 1px solid #80643c;
+      color: #c9b99f;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">TOZLURAFLAR</div>
+    <nav>
+      <a href="#magaza">Mağaza</a>
+      <a href="#mezat">Mezatlar</a>
+      <a href="#koleksiyon">Koleksiyonlar</a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="hero">
+      <small>GEÇMİŞTEN GELECEĞE</small>
+      <h1>Her Eserin Bir Hikâyesi Var</h1>
+      <p>Nadir antikalar, özel koleksiyonlar ve zamansız güzellikler.</p>
+      <a class="btn" href="#magaza">Koleksiyonu Keşfet</a>
+    </div>
+
+    <section id="magaza">
+      <h2>Antikanın Zamansız Dünyası</h2>
+      <p>Her biri geçmişten izler taşıyan özel eserleri keşfedin.</p>
+      <div class="cards">
+        <div class="card">
+          <h3>Antika Mağazası</h3>
+          <p>Özel ve nadir eserler.</p>
+        </div>
+        <div class="card" id="mezat">
+          <h3>Online Mezat</h3>
+          <p>Heyecanlı açık artırmalar.</p>
+        </div>
+        <div class="card" id="koleksiyon">
+          <h3>Koleksiyonlar</h3>
+          <p>Geçmişin değerli parçaları.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>© 2026 TOZLURAFLAR · Antikanın Zamansız Dünyası</footer>
+</body>
+</html>
