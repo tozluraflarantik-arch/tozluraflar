@@ -249,7 +249,7 @@ footer strong{color:var(--gold)}
   </div>
 
   <div id="pazarUrunler" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;">
-
+<div id="supabaseUrunler"></div>
     <article class="pazarKart" data-kategori="saat" style="background:#302319;border:1px solid #80643c;padding:25px;text-align:center;">
       <div style="font-size:65px;padding:25px;">🕰️</div>
       <h3>Antika Masa Saati</h3>
@@ -388,6 +388,42 @@ async function testSupabase() {
 }
 
 testSupabase();
+</script>
+<script>
+async function urunleriGetir() {
+  const alan = document.getElementById("supabaseUrunler");
+
+  const { data, error } = await supabaseClient
+    .from("products")
+    .select("*")
+    .eq("status", "active")
+    .order("created_at", { ascending: false });
+
+  if (error) {
+    alan.innerHTML = "<p>Ürünler yüklenemedi.</p>";
+    console.error(error);
+    return;
+  }
+
+  if (!data || data.length === 0) {
+    alan.innerHTML = "<p>Henüz aktif ürün bulunmuyor.</p>";
+    return;
+  }
+
+  alan.innerHTML = data.map(urun => `
+    <article class="pazarKart" style="background:#302319;border:1px solid #80643c;padding:20px;text-align:center;">
+      ${urun.image_url
+        ? `<img src="${urun.image_url}" alt="${urun.name}" style="width:100%;height:180px;object-fit:cover;">`
+        : `<div style="font-size:60px;padding:25px;">🏺</div>`}
+      <h3>${urun.name}</h3>
+      <p>${urun.description || ""}</p>
+      <strong>${Number(urun.price).toLocaleString("tr-TR")} TL</strong>
+      <p>${urun.category || ""}</p>
+    </article>
+  `).join("");
+}
+
+urunleriGetir();
 </script>
 </body>
 </html>
