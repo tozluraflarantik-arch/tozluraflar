@@ -365,5 +365,29 @@ function contact(subject){
  window.open('https://wa.me/905515294181?text='+message,'_blank');
 }
 </script>
+<script>
+const SUPABASE_URL = "https://fspsvkvegwijvwqepixs.supabase.co";
+const SUPABASE_KEY = "sb_publishable_L-2X0pSPFMqq6l4t-dO0OA_t3aogZ0q";
+
+const supabaseClient = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+async function testSupabase() {
+  const { data, error } = await supabaseClient
+    .from("products")
+    .select("id, name")
+    .limit(5);
+
+  if (error) {
+    console.error("Supabase bağlantı hatası:", error);
+  } else {
+    console.log("Supabase bağlantısı başarılı!", data);
+  }
+}
+
+testSupabase();
+</script>
 </body>
 </html>
