@@ -1,7 +1,8 @@
 
 <!DOCTYPE html>
 <html lang="tr">
-<head>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tozluraflar Mezat | Antikanın Değerli Dünyası</title>
@@ -15,7 +16,31 @@
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
+<script>
+const SUPABASE_URL = "https://fspsvkvegwijvwqepixs.supabase.co";
+const SUPABASE_KEY = "sb_publishable_L-2X0pSPFMqq6l4t-dO0OA_t3aogZ0q";
+
+const supabaseClient = supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+async function testSupabase() {
+  const { data, error } = await supabaseClient
+    .from("products")
+    .select("id, name")
+    .limit(5);
+
+  if (error) {
+    console.error("Supabase bağlantı hatası:", error);
+  } else {
+    console.log("Supabase bağlantısı başarılı!", data);
+  }
+}
+
+testSupabase();
+</script>
+  body{
   margin:0;background:var(--bg);color:var(--cream);
   font-family:Georgia,serif;
 }
