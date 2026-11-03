@@ -201,7 +201,109 @@ footer strong{color:var(--gold)}
     </div>
   </section>
 
-  <section id="hakkimizda">
+
+
+<section id="pazaryeri" style="padding:55px 7%;background:#211710;color:#f3e8d5;">
+  <div style="text-align:center;margin-bottom:30px;">
+    <div style="color:#c6a15e;letter-spacing:4px;">TOZLURAFLAR MAĞAZA</div>
+    <h2 style="color:#d6b477;font-size:34px;">Antika Pazaryeri</h2>
+    <p style="color:#c8b99f;">Geçmişin değerli eserlerini keşfedin.</p>
+  </div>
+
+  <input id="pazarArama" type="search"
+    placeholder="Ürün veya eser ara..."
+    oninput="pazarFiltre()"
+    style="display:block;width:100%;max-width:500px;margin:20px auto;padding:14px;background:#302319;color:white;border:1px solid #80643c;border-radius:5px;">
+
+  <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin:25px 0;">
+    <button onclick="pazarKategori('hepsi')" class="pazarBtn">Tümü</button>
+    <button onclick="pazarKategori('saat')" class="pazarBtn">Saatler</button>
+    <button onclick="pazarKategori('porselen')" class="pazarBtn">Porselen</button>
+    <button onclick="pazarKategori('dekoratif')" class="pazarBtn">Dekoratif</button>
+    <button onclick="pazarKategori('koleksiyon')" class="pazarBtn">Koleksiyon</button>
+  </div>
+
+  <div id="pazarUrunler" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;">
+
+    <article class="pazarKart" data-kategori="saat" style="background:#302319;border:1px solid #80643c;padding:25px;text-align:center;">
+      <div style="font-size:65px;padding:25px;">🕰️</div>
+      <h3>Antika Masa Saati</h3>
+      <p>Özel koleksiyon seçkisi</p>
+      <strong>Fiyat için iletişime geçin</strong>
+      <br>
+      <a href="https://wa.me/905515294181?text=Antika%20masa%20saati%20hakkinda%20bilgi%20almak%20istiyorum" style="display:inline-block;background:#c6a15e;color:#211710;padding:12px 20px;margin-top:18px;text-decoration:none;">Satın Al / Bilgi Al</a>
+    </article>
+
+    <article class="pazarKart" data-kategori="porselen" style="background:#302319;border:1px solid #80643c;padding:25px;text-align:center;">
+      <div style="font-size:65px;padding:25px;">🏺</div>
+      <h3>Antika Porselen Vazo</h3>
+      <p>Özel koleksiyon seçkisi</p>
+      <strong>Fiyat için iletişime geçin</strong>
+      <br>
+      <a href="https://wa.me/905515294181?text=Antika%20porselen%20vazo%20hakkinda%20bilgi%20almak%20istiyorum" style="display:inline-block;background:#c6a15e;color:#211710;padding:12px 20px;margin-top:18px;text-decoration:none;">Satın Al / Bilgi Al</a>
+    </article>
+
+    <article class="pazarKart" data-kategori="dekoratif" style="background:#302319;border:1px solid #80643c;padding:25px;text-align:center;">
+      <div style="font-size:65px;padding:25px;">🕯️</div>
+      <h3>Bronz Şamdan</h3>
+      <p>Özel koleksiyon seçkisi</p>
+      <strong>Fiyat için iletişime geçin</strong>
+      <br>
+      <a href="https://wa.me/905515294181?text=Bronz%20samdan%20hakkinda%20bilgi%20almak%20istiyorum" style="display:inline-block;background:#c6a15e;color:#211710;padding:12px 20px;margin-top:18px;text-decoration:none;">Satın Al / Bilgi Al</a>
+    </article>
+
+    <article class="pazarKart" data-kategori="koleksiyon" style="background:#302319;border:1px solid #80643c;padding:25px;text-align:center;">
+      <div style="font-size:65px;padding:25px;">🏛️</div>
+      <h3>Koleksiyonluk Eserler</h3>
+      <p>Nadir eserler seçkisi</p>
+      <strong>Fiyat için iletişime geçin</strong>
+      <br>
+      <a href="https://wa.me/905515294181?text=Koleksiyonluk%20eserler%20hakkinda%20bilgi%20almak%20istiyorum" style="display:inline-block;background:#c6a15e;color:#211710;padding:12px 20px;margin-top:18px;text-decoration:none;">Satın Al / Bilgi Al</a>
+    </article>
+
+  </div>
+  <p id="pazarSonuc" style="text-align:center;color:#d6b477;margin-top:25px;"></p>
+</section>
+
+<style>
+.pazarBtn {
+  padding:11px 18px;
+  background:#302319;
+  color:#f3e8d5;
+  border:1px solid #80643c;
+  cursor:pointer;
+}
+.pazarBtn:hover {
+  background:#c6a15e;
+  color:#211710;
+}
+</style>
+
+<script>
+let seciliPazarKategori = "hepsi";
+
+function pazarKategori(kategori) {
+  seciliPazarKategori = kategori;
+  pazarFiltre();
+}
+
+function pazarFiltre() {
+  const arama = document.getElementById("pazarArama").value.toLocaleLowerCase("tr");
+  const urunler = document.querySelectorAll(".pazarKart");
+  let bulunan = 0;
+
+  urunler.forEach(urun => {
+    const kategoriUygun = seciliPazarKategori === "hepsi" || urun.dataset.kategori === seciliPazarKategori;
+    const metinUygun = urun.innerText.toLocaleLowerCase("tr").includes(arama);
+    urun.style.display = kategoriUygun && metinUygun ? "block" : "none";
+    if (kategoriUygun && metinUygun) bulunan++;
+  });
+
+  document.getElementById("pazarSonuc").innerText = bulunan + " ürün gösteriliyor";
+}
+</script>
+
+<section id="hakkimizda">
     <div class="section-head">
       <div class="eyebrow">BİZ KİMİZ?</div>
       <h2>Tozluraflar Mezat</h2>
